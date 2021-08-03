@@ -40,7 +40,7 @@ export const SearchButton = props => {
   return (
     <StyledSearchButton
       value={props.value}
-      type="button"
+      type="submit"
       onClick={props.click}
     />
   );

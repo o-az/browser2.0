@@ -1,12 +1,12 @@
 import * as React from 'react';
-import './App.css';
-import { tabContext } from './contexts/TabContext';
+import { GlobalStyle } from './GlobalStyle';
+import { tabContext } from './contexts';
 import { Input, TabGroup, SearchButton, Extensions } from './components';
 import styled from 'styled-components';
 import { GoogleLogo, DuckLogo, BraveLogo } from './assets/logos';
 
-const Container = styled.div`
-  width: 100%;
+const LogoContainer = styled.div`
+  margin: 175px 0 0 0;
 `;
 
 export const useInput = () => {
@@ -25,6 +25,9 @@ const engines = [
     engine: 'Google',
     query: 'search?q=',
     logo: <GoogleLogo />,
+    fullURL: function(value) {
+      return `${this.engine}.com/${this.query}${value}`;
+    },
   },
   {
     engine: 'Brave',
@@ -38,49 +41,56 @@ const engines = [
   },
 ];
 
-const extensions = ['reddit.com', 'drive.google.com', 'youtube.com'];
-// const searchScopes = ['reddit.com', 'drive.google.com'];
+const extensions = [
+  'Reddit',
+  'drive.google.com',
+  'youtube.com',
+  'stackoverflow.com',
+  'github.com',
+];
+
 const App = () => {
   const { contextValue } = React.useContext(tabContext);
   const inputProps = useInput();
   const inputValue = inputProps.value;
-  // Spaces are replaced with +s in the search query
-  // const _inputValue = inputValue.replace(' ', '%20');
-  /**
-   *
-   * https://www.google.com/search?q=abcd+site%3Areddit.com&source=hp&ei=2loIYcfrDLPS5NoPtvyBaA&iflsig=AINFCbYAAAAAYQho6vee5GlrVs3JdAOEHWpIViaeIWXf&oq=abcd+site%3Areddit.com
-   */
+
   const _contextValue = contextValue.engine.toLowerCase();
   const url = `https://${_contextValue}.com/${
     contextValue.query
-  }${inputValue}%3A${contextValue.extension}`;
+  }${inputValue}+site%3A${contextValue.extension}`;
 
   const onSearchClick = event => {
-    console.log(url);
-    parent.open(url);
+    console.log(`onSearchClick URL: ${url}`);
+    window.open(url) || parent.open(url);
 
     event.preventDefault();
   };
-  console.log(contextValue);
+
+  const handleKeyPress = event => {
+    event.keyCode == 13 || event.which === 13 ? onSearchClick(event) : null;
+  };
   return (
-    <div className="App">
-      <TabGroup tabs={engines} />
-      <Extensions extensions={extensions} />
-      <Container>
-        {contextValue.logo}
+    <>
+      <GlobalStyle />
+      <div className="App">
+        <TabGroup tabs={engines} />
+        <Extensions extensions={extensions} />
+        <LogoContainer>{contextValue.logo}</LogoContainer>
         <br />
         <GoogleContainer>
-          <Input engine={contextValue.engine} {...inputProps} />
-          <SearchButton value="Search…" click={onSearchClick} />
+          <Input
+            engine={contextValue.engine}
+            onKeyPress={handleKeyPress}
+            {...inputProps}
+          />
+          <SearchButton type="submit" value="Search…" click={onSearchClick} />
         </GoogleContainer>
         <div>
           <p>{contextValue.extension}</p>
           <p>{contextValue.engine}</p>
-          <p>{contextValue.query}</p>
-          <p>{url}</p>
         </div>
-      </Container>
-    </div>
+      </div>
+    </>
   );
 };
 

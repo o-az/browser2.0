@@ -19,7 +19,7 @@ const BaseContainer = styled.div`
   display: flex;
   height: 44px;
   margin: 10px auto;
-  width: 400px;
+  width: 582px;
   border: 1px solid hsl(220deg 10% 89%);
   box-shadow: none;
   border-radius: 24px;
@@ -43,6 +43,7 @@ const InnerContainer = styled.div`
 `;
 
 const StyledInput = styled.input`
+  font-size: 16px;
   padding: 0.5em;
   margin: 0.5em;
   width: 100%;
@@ -59,6 +60,7 @@ const GoogleInput = props => {
   return (
     <BaseContainer>
       <InnerContainer>
+        <SearchSVG />
         <StyledInput type="text" {...props} />
       </InnerContainer>
     </BaseContainer>
@@ -184,7 +186,6 @@ const BraveButton = styled.button`
   outline: 0;
   transition: background 0.2s, border 0.2s, box-shadow 0.2s, color 0.2s;
   user-select: none;
-  vertical-align: middle;
   white-space: nowrap;
   font-family: 'Poppins', Arial, sans-serif;
   font-weight: 600;
@@ -239,7 +240,7 @@ export const Input = props => {
   return props.engine === 'Google' ? (
     <GoogleInput {...props} />
   ) : props.engine === 'Brave' ? (
-    <BraveInput {...props} />
+    <BraveInput value={props.value} onKeyPress={props.onKeyPress} {...props} />
   ) : (
     <input type="text" {...props} />
   );
