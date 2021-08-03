@@ -19,7 +19,7 @@ const BaseContainer = styled.div`
   display: flex;
   height: 44px;
   margin: 10px auto;
-  width: 582px;
+  width: 28rem;
   border: 1px solid hsl(220deg 10% 89%);
   box-shadow: none;
   border-radius: 24px;
@@ -37,9 +37,8 @@ const InnerContainer = styled.div`
   font-size: 14px;
   flex: 1;
   display: flex;
-  flex-direction: row
-  padding: 5px 8px 0 16px;
-  padding-left: 14px;
+  flex-direction: row;
+  padding: 5px 8px 0 14px;
 `;
 
 const StyledInput = styled.input`

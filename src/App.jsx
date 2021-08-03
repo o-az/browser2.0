@@ -86,8 +86,7 @@ const App = () => {
           <SearchButton type="submit" value="Search…" click={onSearchClick} />
         </GoogleContainer>
         <div>
-          <p>{contextValue.extension}</p>
-          <p>{contextValue.engine}</p>
+          <p>Your {contextValue.engine} search will be scoped to {contextValue.extension}</p>
         </div>
       </div>
     </>
