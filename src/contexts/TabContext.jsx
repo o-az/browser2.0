@@ -1,21 +1,16 @@
 import * as React from 'react';
-
-export const tabContext = React.createContext({
-  contextValues: {
-    engine: 'Google',
-    scope: 'reddit.com',
-  },
-  setContextValues: () => {},
-});
+import { GoogleLogo } from '/src/assets/logos';
+export const tabContext = React.createContext({});
 
 export const TabProvider = props => {
-  const [contextValues, setContextValues] = React.useState('Google');
-  // const ctxValues = {
-  //   tabCtxValue, setTabCtxValue
-  // }
+  const [contextValue, setContextValue] = React.useState({
+    engine: 'Google',
+    query: 'search?q=',
+    logo: <GoogleLogo />,
+    extension: 'reddit.com',
+  });
+  const value = { contextValue, setContextValue };
   return (
-    <tabContext.Provider value={{ contextValues, setContextValues }}>
-      {props.children}
-    </tabContext.Provider>
+    <tabContext.Provider value={value}>{props.children}</tabContext.Provider>
   );
 };

@@ -1,21 +1,13 @@
 import * as React from 'react';
 import './App.css';
 import { tabContext } from './contexts/TabContext';
-import {Input, TabGroup, SearchButton} from './components';
+import { Input, TabGroup, SearchButton, Extensions } from './components';
 import styled from 'styled-components';
+import { GoogleLogo, DuckLogo, BraveLogo } from './assets/logos';
 
 const Container = styled.div`
-  width: 400px;
-  height: 70px;
-  border-color: '#000';
-  border-width: 1px;
-  border-style: solid;
-  margin: 25px 0 0 0;
+  width: 100%;
 `;
-
-export const Debug = ({ children }) => {
-  return <Container>{children}</Container>;
-};
 
 export const useInput = () => {
   const [value, setValue] = React.useState('');
@@ -26,46 +18,68 @@ export const useInput = () => {
   return { value, onChange };
 };
 
-const searchEngines = ['Google', 'DuckDuckGo', 'Brave'];
-const searchScopes = ['reddit.com', 'drive.google.com'];
+export const GoogleContainer = styled.div``;
+
+const engines = [
+  {
+    engine: 'Google',
+    query: 'search?q=',
+    logo: <GoogleLogo />,
+  },
+  {
+    engine: 'Brave',
+    query: 'search?q=',
+    logo: <BraveLogo />,
+  },
+  {
+    engine: 'DuckDuckGo',
+    query: '?q=',
+    logo: <DuckLogo />,
+  },
+];
+
+const extensions = ['reddit.com', 'drive.google.com', 'youtube.com'];
+// const searchScopes = ['reddit.com', 'drive.google.com'];
 const App = () => {
-  const { contextValues, } = React.useContext(tabContext);
+  const { contextValue } = React.useContext(tabContext);
   const inputProps = useInput();
   const inputValue = inputProps.value;
   // Spaces are replaced with +s in the search query
   // const _inputValue = inputValue.replace(' ', '%20');
-  const _contextValues = contextValues.toLowerCase();
+  /**
+   *
+   * https://www.google.com/search?q=abcd+site%3Areddit.com&source=hp&ei=2loIYcfrDLPS5NoPtvyBaA&iflsig=AINFCbYAAAAAYQho6vee5GlrVs3JdAOEHWpIViaeIWXf&oq=abcd+site%3Areddit.com
+   */
+  const _contextValue = contextValue.engine.toLowerCase();
+  const url = `https://${_contextValue}.com/${
+    contextValue.query
+  }${inputValue}%3A${contextValue.extension}`;
 
   const onSearchClick = event => {
-
-    let url = `https://${contextValues}.com`;
-    _contextValues === 'google' || 'brave' ? 
-      url = `${url}/search?q=` : 
-      _contextValues === 'duckduckgo' ? 
-      url = `${url}/?q=` : ''
-
-    console.log(`${url}${inputValue}`);
-    parent.open(`${url}${inputValue}`);
+    console.log(url);
+    parent.open(url);
 
     event.preventDefault();
   };
+  console.log(contextValue);
   return (
     <div className="App">
-      <TabGroup tabs={searchEngines} />
-      <TabGroup tabs={searchScopes} />
-      <h1>Hello {contextValues}</h1>
-      <br/>
-      <Input {...inputProps} />
-      <SearchButton value="Search…" click={onSearchClick} />
-      <Debug
-        children={
-          inputValue ? (
-            <p>{`https://${contextValues}.com/search?q=${inputValue}`}</p>
-          ) : (
-            undefined
-          )
-        }
-      />
+      <TabGroup tabs={engines} />
+      <Extensions extensions={extensions} />
+      <Container>
+        {contextValue.logo}
+        <br />
+        <GoogleContainer>
+          <Input engine={contextValue.engine} {...inputProps} />
+          <SearchButton value="Search…" click={onSearchClick} />
+        </GoogleContainer>
+        <div>
+          <p>{contextValue.extension}</p>
+          <p>{contextValue.engine}</p>
+          <p>{contextValue.query}</p>
+          <p>{url}</p>
+        </div>
+      </Container>
     </div>
   );
 };

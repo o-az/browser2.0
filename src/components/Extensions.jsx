@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { tabContext } from '../contexts/TabContext';
 
-const Tab = styled.button`
+const Extension = styled.button`
   flex-grow: 1;
   font-size: 20px;
   // padding: 10px 60px;
@@ -26,36 +26,29 @@ const ButtonGroup = styled.div`
   height: 30px;
 `;
 
-export const TabGroup = props => {
-  const { tabs } = props;
-  //tabs = tabs.map(i => i.engine);
-  const [active, setActive] = useState(tabs[0].engine);
+export const Extensions = props => {
+  const { extensions } = props;
+  //extensions = extensions.map(i => i.engine);
+  const [active, setActive] = useState(extensions[0]);
   const { contextValue, setContextValue } = React.useContext(tabContext);
 
   const onTabClick = type => {
     //event.preventDefault();
-    setActive(type.engine);
-    setContextValue({
-      ...contextValue,
-      engine: type.engine,
-      logo: type.logo,
-      query: type.query,
-    });
+    setActive(type);
+    setContextValue({ ...contextValue, extension: type });
   };
   return (
-    <>
-      <ButtonGroup>
-        {tabs.map(type => (
-          <Tab
-            key={type.engine}
-            active={active === type.engine}
-            onClick={() => onTabClick(type)}
-            //onClick={() => setActive(type)}
-          >
-            {type.engine}
-          </Tab>
-        ))}
-      </ButtonGroup>
-    </>
+    <ButtonGroup>
+      {extensions.map(type => (
+        <Extension
+          key={type}
+          active={active === type}
+          onClick={() => onTabClick(type)}
+          //onClick={() => setActive(type)}
+        >
+          {type}
+        </Extension>
+      ))}
+    </ButtonGroup>
   );
 };

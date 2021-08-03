@@ -1,13 +1,12 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-
 const StyledSearchButton = styled.input`
   background-color: hsl(0deg 0% 93%);
   border: 1px solid hsl(210deg 17% 98%);
   border-radius: 4px;
   color: hsl(206deg 6% 25%);
-  font-family: Roboto,arial,sans-serif;
+  font-family: Roboto, arial, sans-serif;
   font-size: 14px;
   margin: 11px 4px;
   padding: 0 16px;
@@ -26,21 +25,23 @@ const StyledSearchButton = styled.input`
   }
 `;
 
-export const SearchButton = (props) => {
+export const SearchButton = props => {
   const [textInput, setTextInput] = React.useState('');
 
   const handleClick = () => {
     console.log(textInput);
-    alert(1)
+    alert(1);
     // props.send(textInput);
-  }
+  };
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     setTextInput(event.target.value);
-  }
+  };
   return (
-    <>
-    <StyledSearchButton value={props.value} type="button" onClick={props.click} />
-    </>
-  )
-} 
+    <StyledSearchButton
+      value={props.value}
+      type="button"
+      onClick={props.click}
+    />
+  );
+};

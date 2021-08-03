@@ -7,9 +7,9 @@ main {
 .App {
   font-family: sans-serif;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  justify-items: center;
+  grid-gap: 100px;
   /* column-gap: 200px; 
   align-content: space-between;
   justify-content: space-between
