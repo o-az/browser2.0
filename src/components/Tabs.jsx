@@ -1,28 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { tabContext } from '../contexts/TabContext';
-
-const Tab = styled.li`
-  flex-grow: 1;
-  font-size: 20px;
-  cursor: pointer;
-  opacity: 0.6;
-  background-color: hsl(0deg 1% 57% / 16%);
-  color: hsl(0deg 0% 36%);
-  border: 0;
-  outline: 0;
-  // font-family: "Montserrat";
-  font-weight: bold;
-  padding: 5px 0 0 0;
-  ${({ active }) =>
-    active &&
-    `
-    color: hsl(217deg 100% 63%);
-    background-color: #fff;
-    // border-bottom: 2px solid hsl(217deg 100% 63%);
-    opacity: 1;
-  `};
-`;
+import { IconURLs } from '../assets/icons';
 
 const ButtonGroup = styled.ul`
   display: flex;
@@ -31,6 +10,40 @@ const ButtonGroup = styled.ul`
   margin: 5px 0 0 0;
   list-style-type: none;
 `;
+
+/**
+ *
+ * Google color
+ */
+
+const Tab = styled.li`
+  flex-grow: 1;
+  font-size: 20px;
+  // cursor: pointer;
+  // opacity: 0.6;
+  // background-color: hsl(0deg 1% 57% / 16%);
+  color: hsl(0deg 0% 36%);
+  border: 0;
+  outline: 0;
+  // font-family: "Montserrat";
+  font-weight: bold;
+  padding: 5px 0 0 0;
+
+  background-image: url(${IconURLs.google.color});
+  background-repeat: no-repeat;
+  background-size: contain;
+  ${({ active }) =>
+    active &&
+    `
+    background-image: url(${IconURLs.duckduckgo.color});
+    color: hsl(217deg 100% 63%);
+    background-color: #fff;
+    border-bottom: 2px solid hsl(217deg 100% 63%);
+    opacity: 1;
+  `};
+`;
+
+const Icon = styled.div``;
 
 export const TabGroup = props => {
   const { tabs } = props;
@@ -48,6 +61,7 @@ export const TabGroup = props => {
   };
   return (
     <ButtonGroup>
+      <Icon />
       {tabs.map(type => (
         <Tab
           key={type.engine}

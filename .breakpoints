@@ -1,11 +1,19 @@
 {
   "files": {
+    "src/App.jsx": [
+      {
+        "id": "3b8bfeaa-e4d1-486e-8fd0-17e12fa838f4",
+        "line": 44,
+        "version": 5089,
+        "index": 977
+      }
+    ],
     "src/contexts/TabContext.jsx": [
       {
         "id": "1f0a8286-335c-454b-800c-09c3c7835e27",
-        "line": 17,
-        "version": 456,
-        "index": 490
+        "line": 26,
+        "version": 728,
+        "index": 757
       }
     ]
   }

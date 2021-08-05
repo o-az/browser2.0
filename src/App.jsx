@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { GoogleLogo, DuckLogo, BraveLogo } from './assets/logos';
 
 const LogoContainer = styled.div`
-  margin: 175px 0 0 0;
+  margin: 100px 0 0 0;
 `;
 
 export const useInput = () => {
@@ -42,12 +42,20 @@ const engines = [
 ];
 
 const extensions = [
-  'Reddit',
-  'drive.google.com',
-  'youtube.com',
-  'stackoverflow.com',
-  'github.com',
+  { title: 'Reddit', link: 'reddit.com' },
+  { title: 'Drive', link: 'drive.google.com' },
+  { title: 'YouTube', link: 'youtube.com' },
+  { title: 'Stackoverflow', link: 'stackoverflow.com' },
+  { title: 'Github', link: 'github.com' },
 ];
+
+// const extensions = [
+//   'Reddit',
+//   'drive.google.com',
+//   'youtube.com',
+//   'stackoverflow.com',
+//   'github.com',
+// ];
 
 const App = () => {
   const { contextValue } = React.useContext(tabContext);
@@ -74,7 +82,6 @@ const App = () => {
       <GlobalStyle />
       <div className="App">
         <TabGroup tabs={engines} />
-        <Extensions extensions={extensions} />
         <LogoContainer>{contextValue.logo}</LogoContainer>
         <br />
         <GoogleContainer>
@@ -86,8 +93,12 @@ const App = () => {
           <SearchButton type="submit" value="Search…" click={onSearchClick} />
         </GoogleContainer>
         <div>
-          <p>Your {contextValue.engine} search will be scoped to {contextValue.extension}</p>
+          <p>
+            Your {contextValue.engine} search will be scoped to{' '}
+            {contextValue.extension}
+          </p>
         </div>
+        <Extensions extensions={extensions} />
       </div>
     </>
   );

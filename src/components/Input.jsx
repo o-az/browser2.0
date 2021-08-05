@@ -14,63 +14,64 @@ export const useInput = props => {
   return { value, onChange };
 };
 
-const BaseContainer = styled.div`
-  background: hsl(0deg 0% 100%);
-  display: flex;
-  height: 44px;
-  margin: 10px auto;
-  width: 28rem;
-  border: 1px solid hsl(220deg 10% 89%);
-  box-shadow: none;
-  border-radius: 24px;
-  z-index: 3;
-  &:hover {
-    background-color: hsl(0deg 0% 100%);
-    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-    border-color: hsl(220deg 10% 89% / 0%);
-  }
-`;
+// const BaseContainer = styled.div`
+//   background: hsl(0deg 0% 100%);
+//   display: flex;
+//   height: 44px;
+//   margin: 10px auto;
+//   width: 28rem;
+//   border: 1px solid hsl(220deg 10% 89%);
+//   box-shadow: none;
+//   border-radius: 24px;
+//   z-index: 3;
+//   &:hover {
+//     background-color: hsl(0deg 0% 100%);
+//     box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+//     border-color: hsl(220deg 10% 89% / 0%);
+//   }
+// `;
 
-const InnerContainer = styled.div`
-  font-family: Roboto,arial,sans-serif;
-  color: #222;
-  font-size: 14px;
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  padding: 5px 8px 0 14px;
-`;
+// const InnerContainer = styled.div`
+//   font-family: Roboto, arial, sans-serif;
+//   color: #222;
+//   font-size: 14px;
+//   flex: 1;
+//   display: flex;
+//   flex-direction: row;
+//   padding: 5px 8px 0 14px;
+// `;
 
-const StyledInput = styled.input`
-  font-size: 16px;
-  padding: 0.5em;
-  margin: 0.5em;
-  width: 100%;
-  background: none;
-  border: none;
-  border-radius: 0px;
-  &:focus-visible {
-    outline: none;
-  }
-`;
+// const StyledInput = styled.input`
+//   font-size: 16px;
+//   padding: 0.5em;
+//   margin: 0.5em;
+//   width: 100%;
+//   background: none;
+//   border: none;
+//   border-radius: 0px;
+//   &:focus-visible {
+//     outline: none;
+//   }
+// `;
 
-// the component
-const GoogleInput = props => {
-  return (
-    <BaseContainer>
-      <InnerContainer>
-        <SearchSVG />
-        <StyledInput type="text" {...props} />
-      </InnerContainer>
-    </BaseContainer>
-  );
-};
+// // the component
+// const GoogleInput = props => {
+//   return (
+//     <BaseContainer>
+//       <InnerContainer>
+//         <SearchSVG />
+//         <StyledInput type="text" {...props} />
+//       </InnerContainer>
+//     </BaseContainer>
+//   );
+// };
 
 const BraveBaseContainer = styled.div`
   display: flex;
   height: 44px;
   margin: 10px auto;
-  width: 400px;
+  width: 90vw;
+  max-width: 600px;
   line-height: 1.6;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial,
@@ -80,7 +81,7 @@ const BraveBaseContainer = styled.div`
   text-rendering: optimizeLegibility;
   font-family: var(--main-font);
   box-sizing: inherit;
-  max-width: calc(var(--search-form-width) + 2rem);
+  // max-width: calc(var(--search-form-width) + 2rem);
   border: 1px solid transparent;
   border-radius: 10px;
   &:hover {
@@ -91,8 +92,6 @@ const BraveBaseContainer = styled.div`
 `;
 
 const BraveInnerContainer = styled.form`
-  --search-form-height: 56px !important;
-  --site-footer-height: 50px;
   color: #3b4351;
   font-size: 0.8rem;
   text-rendering: optimizeLegibility;
@@ -145,7 +144,7 @@ const BraveSVGSpan = styled.span`
 `;
 
 const StyledBraveInput = styled.input.attrs(props => ({
-  placeholder: 'Search the web privately…',
+  placeholder: 'Search the web conveniently …',
 }))`
   box-sizing: inherit;
   font-family: inherit;
@@ -155,7 +154,7 @@ const StyledBraveInput = styled.input.attrs(props => ({
   background: #fff;
   background-image: none;
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   line-height: 1.2rem;
   max-width: 100%;
   position: relative;
@@ -193,7 +192,7 @@ const BraveButton = styled.button`
   transition-property: background, color, opacity, border;
   transition-duration: 0.1s;
   transition-timing-function: ease-in-out;
-  cursor: pointer;
+  // cursor: none;
   box-sizing: border-box;
   line-height: 20px;
   --height: 40px;
@@ -202,7 +201,7 @@ const BraveButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  order: 5;
+  //order: 5;
   z-index: 2;
   border: none;
   width: 55px;
@@ -211,36 +210,47 @@ const BraveButton = styled.button`
   border-bottom-right-radius: 10px;
   padding: 0;
   flex-shrink: 0;
-  &:hover {
-    background: linear-gradient(
-      302.53deg,
-      hsl(236deg 60% 56%) 0%,
-      hsl(310deg 81% 41%) 56.25%,
-      hsl(8deg 93% 54%) 100%
-    );
-  }
+  // &:hover {
+  //   background: linear-gradient(
+  //     302.53deg,
+  //     hsl(236deg 60% 56%) 0%,
+  //     hsl(310deg 81% 41%) 56.25%,
+  //     hsl(8deg 93% 54%) 100%
+  //   );
+  // }
 `;
 
 const BraveInput = props => (
   <BraveBaseContainer>
     <BraveInnerContainer>
-      <BraveSVGSpan>
-        <BraveLeftSearchIcon />
-      </BraveSVGSpan>
-      <StyledBraveInput type="text" {...props} />
-      <BraveButton>
+      <BraveButton disabled>
         <BraveRightSearchIcon />
       </BraveButton>
+      <StyledBraveInput type="text" {...props} />
     </BraveInnerContainer>
   </BraveBaseContainer>
+  // <BraveBaseContainer>
+  //   <BraveInnerContainer>
+  //     <BraveSVGSpan>
+  //       <BraveLeftSearchIcon />
+  //     </BraveSVGSpan>
+  //     <StyledBraveInput type="text" {...props} />
+  //     <BraveButton disabled>
+  //       <BraveRightSearchIcon />
+  //     </BraveButton>
+  //   </BraveInnerContainer>
+  // </BraveBaseContainer>
 );
 
-export const Input = props => {
-  return props.engine === 'Google' ? (
-    <GoogleInput {...props} />
-  ) : props.engine === 'Brave' ? (
-    <BraveInput value={props.value} onKeyPress={props.onKeyPress} {...props} />
-  ) : (
-    <input type="text" {...props} />
-  );
-};
+export const Input = props => (
+  <BraveInput value={props.value} onKeyPress={props.onKeyPress} {...props} />
+);
+// {
+//   return props.engine === 'Google' ? (
+//     <GoogleInput {...props} />
+//   ) : props.engine === 'Brave' ? (
+//     <BraveInput value={props.value} onKeyPress={props.onKeyPress} {...props} />
+//   ) : (
+//     <input type="text" {...props} />
+//   );
+// };
