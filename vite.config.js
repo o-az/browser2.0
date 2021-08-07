@@ -1,15 +1,18 @@
-import reactRefresh from '@vitejs/plugin-react-refresh'
-
+import reactRefresh from '@vitejs/plugin-react-refresh';
+import path from "path";
+import { defineConfig } from 'vite';
 /**
  * https://vitejs.dev/config/
- * @type { import('vite').UserConfig }
  */
-export default {
+export default defineConfig({
   plugins: [reactRefresh()],
   server: {
-    host: '0.0.0.0',
-    hmr: {
-      port: 443,
-    }
-  }
-}
+    open: '/index.html',
+  },
+  resolve: {
+    alias: {
+      "~": path.resolve(__dirname, "./"),
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+});

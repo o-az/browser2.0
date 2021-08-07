@@ -1,9 +1,10 @@
+import { BraveLogo, DuckLogo, GoogleLogo } from '@/assets/logos';
+import { Extensions, Input, SearchButton, TabGroup } from '@/components';
 import * as React from 'react';
-import { GlobalStyle } from './GlobalStyle';
-import { tabContext } from './contexts';
-import { Input, TabGroup, SearchButton, Extensions } from './components';
 import styled from 'styled-components';
-import { GoogleLogo, DuckLogo, BraveLogo } from './assets/logos';
+import { Options } from './components/Options';
+import { tabContext } from './contexts';
+import { GlobalStyle } from './GlobalStyle';
 
 const LogoContainer = styled.div`
   margin: 100px 0 0 0;
@@ -25,7 +26,7 @@ const engines = [
     engine: 'Google',
     query: 'search?q=',
     logo: <GoogleLogo />,
-    fullURL: function(value) {
+    fullURL: function (value) {
       return `${this.engine}.com/${this.query}${value}`;
     },
   },
@@ -49,23 +50,47 @@ const extensions = [
   { title: 'Github', link: 'github.com' },
 ];
 
-// const extensions = [
-//   'Reddit',
-//   'drive.google.com',
-//   'youtube.com',
-//   'stackoverflow.com',
-//   'github.com',
-// ];
+export const file_format = [
+  {
+    id: 1,
+    format: "pdf",
+  },
+  {
+    id: 2,
+    format: "xlsx",
+  },
+  {
+    id: 3,
+    format: "mp4",
+  },
+  {
+    id: 4,
+    format: "docx",
+  },
+  {
+    id: 5,
+    format: "txt"
+  },
+  {
+    id: 6,
+    format: "svg"
+  }
+];
 
 const App = () => {
   const { contextValue } = React.useContext(tabContext);
   const inputProps = useInput();
   const inputValue = inputProps.value;
+  const [selectedFileType, setSelectedFileType] = React.useState('');
 
   const _contextValue = contextValue.engine.toLowerCase();
-  const url = `https://${_contextValue}.com/${
-    contextValue.query
-  }${inputValue}+site%3A${contextValue.extension}`;
+  const url = `https://${_contextValue}.com/${contextValue.query
+    }${inputValue}+site%3A${contextValue.extension} filetype:${selectedFileType}`;
+
+  const onFileTypeSelect = event => {
+    setSelectedFileType(event.target.value);
+    console.log(event.target.value)
+  };
 
   const onSearchClick = event => {
     console.log(`onSearchClick URL: ${url}`);
@@ -90,7 +115,12 @@ const App = () => {
             onKeyPress={handleKeyPress}
             {...inputProps}
           />
-          <SearchButton type="submit" value="Search…" click={onSearchClick} />
+
+          <SearchButton
+            type="submit"
+            value="Search…"
+            click={onSearchClick}
+          />
         </GoogleContainer>
         <div>
           <p>
@@ -99,6 +129,11 @@ const App = () => {
           </p>
         </div>
         <Extensions extensions={extensions} />
+        <Options
+          title="File Type"
+          items={file_format}
+          onOptionSelect={onFileTypeSelect}
+        />
       </div>
     </>
   );

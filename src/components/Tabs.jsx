@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { tabContext } from '../contexts/TabContext';
 import { IconURLs } from '../assets/icons';
+import { tabContext } from '../contexts/TabContext';
 
 const ButtonGroup = styled.ul`
   display: flex;
@@ -28,14 +28,14 @@ const Tab = styled.li`
   // font-family: "Montserrat";
   font-weight: bold;
   padding: 5px 0 0 0;
-
-  background-image: url(${IconURLs.google.color});
-  background-repeat: no-repeat;
-  background-size: contain;
+  cursor: pointer;
+  //background-image: url(${IconURLs.google.color});
+  //background-repeat: no-repeat;
+ // background-size: contain;
   ${({ active }) =>
     active &&
     `
-    background-image: url(${IconURLs.duckduckgo.color});
+   // background-image: url(${IconURLs.duckduckgo.color});
     color: hsl(217deg 100% 63%);
     background-color: #fff;
     border-bottom: 2px solid hsl(217deg 100% 63%);
