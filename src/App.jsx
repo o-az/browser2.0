@@ -1,10 +1,9 @@
-import { BraveLogo, DuckLogo, GoogleLogo } from '@/assets/logos';
-import { Extensions, Input, SearchButton, TabGroup } from '@/components';
 import * as React from 'react';
 import styled from 'styled-components';
-import { Options } from './components/Options';
-import { tabContext } from './contexts';
-import { GlobalStyle } from './GlobalStyle';
+import { tabContext } from '@/contexts';
+import { GlobalStyle } from '@/GlobalStyle';
+import { BraveLogo, DuckLogo, GoogleLogo } from '@/assets/logos';
+import { Extensions, Input, SearchButton, TabGroup, Menu } from '@/components';
 
 const LogoContainer = styled.div`
   margin: 100px 0 0 0;
@@ -12,7 +11,7 @@ const LogoContainer = styled.div`
 
 export const useInput = () => {
   const [value, setValue] = React.useState('');
-  const onChange = event => {
+  const onChange = (event) => {
     setValue(event.target.value);
     event.preventDefault();
   };
@@ -43,38 +42,58 @@ const engines = [
 ];
 
 const extensions = [
-  { title: 'Reddit', link: 'reddit.com' },
-  { title: 'Drive', link: 'drive.google.com' },
-  { title: 'YouTube', link: 'youtube.com' },
-  { title: 'Stackoverflow', link: 'stackoverflow.com' },
-  { title: 'Github', link: 'github.com' },
+  {
+    id: 1,
+    title: 'Reddit',
+    link: 'reddit.com',
+  },
+  {
+    id: 2,
+    title: 'Stackoverflow',
+    link: 'stackoverflow.com',
+  },
+  {
+    id: 3,
+    title: 'Drive',
+    link: 'drive.google.com',
+  },
+  {
+    id: 4,
+    title: 'YouTube',
+    link: 'youtube.com',
+  },
+  {
+    id: 5,
+    title: 'Github',
+    link: 'github.com',
+  },
 ];
 
 export const file_format = [
   {
     id: 1,
-    format: "pdf",
+    format: 'pdf',
   },
   {
     id: 2,
-    format: "xlsx",
+    format: 'xlsx',
   },
   {
     id: 3,
-    format: "mp4",
+    format: 'mp4',
   },
   {
     id: 4,
-    format: "docx",
+    format: 'docx',
   },
   {
     id: 5,
-    format: "txt"
+    format: 'txt',
   },
   {
     id: 6,
-    format: "svg"
-  }
+    format: 'svg',
+  },
 ];
 
 const App = () => {
@@ -84,22 +103,21 @@ const App = () => {
   const [selectedFileType, setSelectedFileType] = React.useState('');
 
   const _contextValue = contextValue.engine.toLowerCase();
-  const url = `https://${_contextValue}.com/${contextValue.query
-    }${inputValue}+site%3A${contextValue.extension} filetype:${selectedFileType}`;
+  const url = `https://${_contextValue}.com/${contextValue.query}${inputValue}+site%3A${contextValue.extension} filetype:${selectedFileType}`;
 
-  const onFileTypeSelect = event => {
+  const onFileTypeSelect = (event) => {
     setSelectedFileType(event.target.value);
-    console.log(event.target.value)
+    console.log(event.target.value);
   };
 
-  const onSearchClick = event => {
+  const onSearchClick = (event) => {
     console.log(`onSearchClick URL: ${url}`);
     window.open(url) || parent.open(url);
 
     event.preventDefault();
   };
 
-  const handleKeyPress = event => {
+  const handleKeyPress = (event) => {
     event.keyCode == 13 || event.which === 13 ? onSearchClick(event) : null;
   };
   return (
@@ -116,11 +134,7 @@ const App = () => {
             {...inputProps}
           />
 
-          <SearchButton
-            type="submit"
-            value="Search…"
-            click={onSearchClick}
-          />
+          <SearchButton type="submit" value="Search…" click={onSearchClick} />
         </GoogleContainer>
         <div>
           <p>
@@ -129,7 +143,7 @@ const App = () => {
           </p>
         </div>
         <Extensions extensions={extensions} />
-        <Options
+        <Menu
           title="File Type"
           items={file_format}
           onOptionSelect={onFileTypeSelect}

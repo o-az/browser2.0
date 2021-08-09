@@ -6,9 +6,9 @@ import {
   BraveRightSearchIcon,
 } from './SearchSVG';
 // the hook
-export const useInput = props => {
+export const useInput = (props) => {
   const [value, setValue] = React.useState(props);
-  const onChange = event => {
+  const onChange = (event) => {
     setValue(event.target.value);
   };
   return { value, onChange };
@@ -143,7 +143,7 @@ const BraveSVGSpan = styled.span`
   opacity: 0.5 !important;
 `;
 
-const StyledBraveInput = styled.input.attrs(props => ({
+const StyledBraveInput = styled.input.attrs((props) => ({
   placeholder: 'Search the web conveniently …',
 }))`
   box-sizing: inherit;
@@ -220,7 +220,7 @@ const BraveButton = styled.button`
   // }
 `;
 
-const BraveInput = props => (
+const BraveInput = (props) => (
   <BraveBaseContainer>
     <BraveInnerContainer>
       <BraveButton disabled>
@@ -242,7 +242,7 @@ const BraveInput = props => (
   // </BraveBaseContainer>
 );
 
-export const Input = props => (
+export const Input = (props) => (
   <BraveInput value={props.value} onKeyPress={props.onKeyPress} {...props} />
 );
 // {

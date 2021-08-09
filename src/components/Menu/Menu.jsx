@@ -1,38 +1,28 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Radio } from './Radio';
 
 const Container = styled.div`
-  display: grid;
-  width: 600px;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  width: 90vw;
   height: 80px;
   align-content: center;
   justify-items: start;
   align-items: stretch;
   row-gap: 20px;
   margin: 20px 8px 20px 8px;
+`;
 
-
-`
 const OptionsStyle = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 6%;
+  row-gap: 15px;
   justify-content: flex-start;
-`
-
-const RadioContainer = styled.div`
-  display: flex;
-  column-gap: 10px;
 `;
-
-const RadioButton = styled.input`
-  vertical-align: middle;
-  margin: 2.3px 0 0 0;
-`
-
-const RadioLabel = styled.label`
-`
 
 const TitleContainer = styled.div`
   display: flex;
@@ -44,27 +34,19 @@ const TitleContainer = styled.div`
 const Title = styled.span`
   font-weight: 500;
   font-size: 1.2rem;
-`
+  word-break: keep-all;
+  white-space: nowrap;
+`;
 
-const TitleDivider = styled.div`
+const TitleDivider = styled.hr`
   height: 1px;
-  width: 450px;
+  width: 90%;
+  max-width: 600px;
   margin: 6px 0 0 0;
   background: grey;
-`
+`;
 
-export const Radio = props => {
-  const { text, onRadioSelect } = props;
-
-  return (
-    <RadioContainer>
-      <RadioButton type="radio" name="radio" value={text} onChange={onRadioSelect} />
-      <RadioLabel>{text}</RadioLabel>
-    </RadioContainer>
-  )
-}
-
-export const Options = props => {
+export const Menu = (props) => {
   const { title, items, onOptionSelect } = props;
 
   return (
@@ -74,12 +56,16 @@ export const Options = props => {
         <TitleDivider />
       </TitleContainer>
       <OptionsStyle>
-        {items.map(item => (
-          <Radio key={item.id} text={item.format} onRadioSelect={onOptionSelect} />
+        {items.map((item) => (
+          <Radio
+            key={item.id}
+            text={item.format}
+            onRadioSelect={onOptionSelect}
+          />
         ))}
       </OptionsStyle>
     </Container>
-  )
+  );
 };
 
 /**

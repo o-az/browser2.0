@@ -25,7 +25,7 @@ const StyledSearchButton = styled.input`
   }
 `;
 
-export const SearchButton = props => {
+export const SearchButton = (props) => {
   const [textInput, setTextInput] = React.useState('');
 
   const handleClick = () => {
@@ -34,7 +34,7 @@ export const SearchButton = props => {
     // props.send(textInput);
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setTextInput(event.target.value);
   };
   return (

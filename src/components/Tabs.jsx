@@ -31,7 +31,7 @@ const Tab = styled.li`
   cursor: pointer;
   //background-image: url(${IconURLs.google.color});
   //background-repeat: no-repeat;
- // background-size: contain;
+  // background-size: contain;
   ${({ active }) =>
     active &&
     `
@@ -45,12 +45,12 @@ const Tab = styled.li`
 
 const Icon = styled.div``;
 
-export const TabGroup = props => {
+export const TabGroup = (props) => {
   const { tabs } = props;
   const [active, setActive] = useState(tabs[0].engine);
   const { contextValue, setContextValue } = React.useContext(tabContext);
 
-  const onTabClick = type => {
+  const onTabClick = (type) => {
     setActive(type.engine);
     setContextValue({
       ...contextValue,
@@ -62,7 +62,7 @@ export const TabGroup = props => {
   return (
     <ButtonGroup>
       <Icon />
-      {tabs.map(type => (
+      {tabs.map((type) => (
         <Tab
           key={type.engine}
           active={active === type.engine}

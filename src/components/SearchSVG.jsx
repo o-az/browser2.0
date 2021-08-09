@@ -38,7 +38,7 @@ export const BraveLeftSearchIcon = () => (
   </svg>
 );
 
-const Stop = styled.stop.attrs(props => ({
+const Stop = styled.stop.attrs((props) => ({
   // type: props.type || 'button',
   stopColor: props.baseColor,
   // size: props.size || '1rem'

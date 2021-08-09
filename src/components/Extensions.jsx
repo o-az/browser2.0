@@ -9,7 +9,7 @@ const ButtonGroup = styled.ul`
   flex-direction: row;
   flex-wrap: wrap;
   width: 90vw;
-  max-width: 610px;
+  max-width: 600px;
   //max-width: 600px;
   justify-content: flex-start;
   margin: 20px 0 0 0;
@@ -27,16 +27,17 @@ const Button = styled.button`
   align-content: space-between;
   //justify-content: center;
   align-items: center;
-  width: 160px;
+  width: initial;
   height: 45px;
   cursor: pointer;
   border: 0.1em solid #ffffff;
   margin: 0 0.5em 0.5em 0;
+  padding: 0 8px 0 8px;
   border-radius: 0.12em;
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #000;
   transition: all 0.2s;
   border: 2px solid transparent;
@@ -62,21 +63,21 @@ const Text = styled.span`
 
 const Icon = styled.img`
   height: 32px;
-  margin-left: 10px;
+  margin: 0 5px 0 0;
 `;
 
-export const Extensions = props => {
+export const Extensions = (props) => {
   const { extensions } = props;
   const [active, setActive] = React.useState(extensions[0].title);
   const { contextValue, setContextValue } = React.useContext(tabContext);
 
-  const onTabClick = type => {
+  const onTabClick = (type) => {
     setActive(type);
     setContextValue({ ...contextValue, extension: type });
   };
   return (
     <ButtonGroup>
-      {extensions.map(type => (
+      {extensions.map((type) => (
         <Button
           key={type.title}
           active={active === type.title}

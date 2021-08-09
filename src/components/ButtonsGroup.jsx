@@ -37,18 +37,18 @@ const ButtonGroup = styled.ul`
   list-style-type: none;
 `;
 
-export const ButtonsGroup = props => {
+export const ButtonsGroup = (props) => {
   const { items } = props;
   const [active, setActive] = React.useState(items[0]);
   const { contextValue, setContextValue } = React.useContext(tabContext);
 
-  const onTabClick = type => {
+  const onTabClick = (type) => {
     setActive(type);
     setContextValue({ ...contextValue, extension: type.title });
   };
   return (
     <ButtonGroup>
-      {items.map(type => (
+      {items.map((type) => (
         <Extension
           key={type.title}
           active={active === type.title}
