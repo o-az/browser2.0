@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { tabContext } from '../contexts/TabContext';
+import { tabContext } from '@/contexts/TabContext';
 
 const ButtonGroup = styled.ul`
   display: flex;

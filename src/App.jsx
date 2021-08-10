@@ -4,7 +4,7 @@ import { tabContext } from '@/contexts';
 import { GlobalStyle } from '@/GlobalStyle';
 import { BraveLogo, DuckLogo, GoogleLogo } from '@/assets/logos';
 import {
-  Extensions,
+  ButtonGroup,
   SearchBar,
   SearchButton,
   TabGroup,
@@ -178,7 +178,7 @@ const App = () => {
           <SearchButton type="submit" value="Search…" click={onSearchClick} />
           <br />
         </div>
-        <Extensions extensions={extensions} />
+        <ButtonGroup extensions={extensions} />
         <Menu
           title="File Type"
           items={file_format}

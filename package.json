@@ -1,6 +1,7 @@
 {
   "name": "prowser",
   "version": "0.0.1",
+  "author": "O",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

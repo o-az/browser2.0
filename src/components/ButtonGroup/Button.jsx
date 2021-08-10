@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { IconURLs } from '../assets/icons';
-import { tabContext } from '../contexts/TabContext';
+import { IconURLs } from '@/assets/icons';
+import { tabContext } from '@/contexts/TabContext';
 
 const ButtonGroup = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ const ButtonGroup = styled.div`
   list-style-type: none;
 `;
 
-const Button = styled.button`
+const ButtonStyle = styled.button`
   display: flex;
   flex-direction: row;
   align-content: space-between;
@@ -61,28 +61,13 @@ const Icon = styled.img`
   margin: 0 5px 0 0;
 `;
 
-export const Extensions = (props) => {
-  const { extensions } = props;
-  const [active, setActive] = React.useState(extensions[0].title);
-  const { contextValue, setContextValue } = React.useContext(tabContext);
+export const Button = (props) => {
+  const { title, onTabClick, icon, active } = props;
 
-  const onTabClick = (type) => {
-    setActive(type);
-    setContextValue({ ...contextValue, extension: type });
-  };
   return (
-    <ButtonGroup>
-      {extensions.map((type) => (
-        <Button
-          key={type.title}
-          active={active === type.title}
-          onClick={() => onTabClick(type.title)}
-        >
-          <Icon src={IconURLs[type.title.toLowerCase()].color} />
-          {/* <img src={IconURLs[type.title.toLowerCase()].color} height="32" /> */}
-          <Text>{type.title}</Text>
-        </Button>
-      ))}
-    </ButtonGroup>
+    <ButtonStyle active={active} onClick={() => onTabClick(title)}>
+      <Icon src={icon} />
+      <Text>{title}</Text>
+    </ButtonStyle>
   );
 };
