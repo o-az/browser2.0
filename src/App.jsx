@@ -3,7 +3,14 @@ import styled from 'styled-components';
 import { tabContext } from '@/contexts';
 import { GlobalStyle } from '@/GlobalStyle';
 import { BraveLogo, DuckLogo, GoogleLogo } from '@/assets/logos';
-import { Extensions, Input, SearchButton, TabGroup, Menu } from '@/components';
+import {
+  Extensions,
+  SearchBar,
+  SearchButton,
+  TabGroup,
+  Menu,
+  Footer,
+} from '@/components';
 
 const LogoContainer = styled.div`
   margin: 100px 0 0 0;
@@ -20,14 +27,11 @@ export const useInput = () => {
 
 export const GoogleContainer = styled.div``;
 
-const engines = [
+export const engines = [
   {
     engine: 'Google',
     query: 'search?q=',
     logo: <GoogleLogo />,
-    fullURL: function (value) {
-      return `${this.engine}.com/${this.query}${value}`;
-    },
   },
   {
     engine: 'Brave',
@@ -41,7 +45,7 @@ const engines = [
   },
 ];
 
-const extensions = [
+export const extensions = [
   {
     id: 1,
     title: 'Reddit',
@@ -72,27 +76,54 @@ const extensions = [
 export const file_format = [
   {
     id: 1,
-    format: 'pdf',
+    text: 'pdf',
   },
   {
     id: 2,
-    format: 'xlsx',
+    text: 'xlsx',
   },
   {
     id: 3,
-    format: 'mp4',
+    text: 'mp4',
   },
   {
     id: 4,
-    format: 'docx',
+    text: 'docx',
   },
   {
     id: 5,
-    format: 'txt',
+    text: 'txt',
   },
   {
     id: 6,
-    format: 'svg',
+    text: 'svg',
+  },
+  {
+    id: 7,
+    text: 'git',
+  },
+];
+
+export const time_duration = [
+  {
+    id: 1,
+    text: 'Any time',
+  },
+  {
+    id: 2,
+    text: 'Past year',
+  },
+  {
+    id: 3,
+    text: 'Past 6 months',
+  },
+  {
+    id: 4,
+    text: 'Past month',
+  },
+  {
+    id: 5,
+    text: 'Past week',
   },
 ];
 
@@ -101,12 +132,18 @@ const App = () => {
   const inputProps = useInput();
   const inputValue = inputProps.value;
   const [selectedFileType, setSelectedFileType] = React.useState('');
+  const [selectedDate, setSelectedDate] = React.useState('Any time');
 
   const _contextValue = contextValue.engine.toLowerCase();
   const url = `https://${_contextValue}.com/${contextValue.query}${inputValue}+site%3A${contextValue.extension} filetype:${selectedFileType}`;
 
   const onFileTypeSelect = (event) => {
     setSelectedFileType(event.target.value);
+    console.log(event.target.value);
+  };
+
+  const onDateSelect = (event) => {
+    setSelectedDate(event.target.value);
     console.log(event.target.value);
   };
 
@@ -127,20 +164,19 @@ const App = () => {
         <TabGroup tabs={engines} />
         <LogoContainer>{contextValue.logo}</LogoContainer>
         <br />
-        <GoogleContainer>
-          <Input
+        <p>
+          Your {contextValue.engine} search will be scoped to{' '}
+          {contextValue.extension}
+        </p>
+        <div>
+          <SearchBar
             engine={contextValue.engine}
             onKeyPress={handleKeyPress}
             {...inputProps}
           />
 
           <SearchButton type="submit" value="Search…" click={onSearchClick} />
-        </GoogleContainer>
-        <div>
-          <p>
-            Your {contextValue.engine} search will be scoped to{' '}
-            {contextValue.extension}
-          </p>
+          <br />
         </div>
         <Extensions extensions={extensions} />
         <Menu
@@ -148,6 +184,13 @@ const App = () => {
           items={file_format}
           onOptionSelect={onFileTypeSelect}
         />
+        <Menu
+          title="Date Published"
+          items={time_duration}
+          onOptionSelect={onDateSelect}
+        />
+
+        <Footer />
       </div>
     </>
   );

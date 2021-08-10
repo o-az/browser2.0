@@ -7,7 +7,8 @@ const StyledSearchButton = styled.input`
   border-radius: 4px;
   color: hsl(206deg 6% 25%);
   font-family: Roboto, arial, sans-serif;
-  font-size: 14px;
+  font-size: 17px;
+  font-weight: 500;
   margin: 11px 4px;
   padding: 0 16px;
   line-height: 27px;
@@ -26,17 +27,6 @@ const StyledSearchButton = styled.input`
 `;
 
 export const SearchButton = (props) => {
-  const [textInput, setTextInput] = React.useState('');
-
-  const handleClick = () => {
-    console.log(textInput);
-    alert(1);
-    // props.send(textInput);
-  };
-
-  const handleChange = (event) => {
-    setTextInput(event.target.value);
-  };
   return (
     <StyledSearchButton
       value={props.value}

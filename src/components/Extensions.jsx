@@ -1,10 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { tabContext } from '../contexts/TabContext';
-import { BraveIcon, RedditIcon } from '../assets/icons';
 import { IconURLs } from '../assets/icons';
+import { tabContext } from '../contexts/TabContext';
 
-const ButtonGroup = styled.ul`
+const ButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -19,9 +18,6 @@ const ButtonGroup = styled.ul`
 `;
 
 const Button = styled.button`
-  // background-image: url(${IconURLs.brave.color});
-  // background-repeat: no-repeat;
-  // background-size: contain;
   display: flex;
   flex-direction: row;
   align-content: space-between;
@@ -42,15 +38,14 @@ const Button = styled.button`
   transition: all 0.2s;
   border: 2px solid transparent;
   &:hover {
-    // color: #000000;
-    background-color: #ffffff;
-    border: 2px solid #000;
+    background-color: #f7f7f7;
+    border: 0.5px solid #000;
   }
   ${({ active }) =>
     active &&
     `
-      background-color: #fff;
-      border: 2px solid #000;
+      background-color: #ffff;
+      border: 1px solid #000;
     `};
 `;
 

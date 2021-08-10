@@ -12,7 +12,7 @@ const Container = styled.div`
   justify-items: start;
   align-items: stretch;
   row-gap: 20px;
-  margin: 20px 8px 20px 8px;
+  margin: 20px 8px 0 8px;
 `;
 
 const OptionsStyle = styled.div`
@@ -22,6 +22,7 @@ const OptionsStyle = styled.div`
   gap: 6%;
   row-gap: 15px;
   justify-content: flex-start;
+  margin: 0 0 0 2px;
 `;
 
 const TitleContainer = styled.div`
@@ -33,7 +34,7 @@ const TitleContainer = styled.div`
 
 const Title = styled.span`
   font-weight: 500;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   word-break: keep-all;
   white-space: nowrap;
 `;
@@ -58,8 +59,9 @@ export const Menu = (props) => {
       <OptionsStyle>
         {items.map((item) => (
           <Radio
+            id={item.id}
             key={item.id}
-            text={item.format}
+            text={item.text}
             onRadioSelect={onOptionSelect}
           />
         ))}

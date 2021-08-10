@@ -1,10 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import {
-  SearchSVG,
-  BraveLeftSearchIcon,
-  BraveRightSearchIcon,
-} from './SearchSVG';
+import { BraveRightSearchIcon } from '@/assets/icons';
+
 // the hook
 export const useInput = (props) => {
   const [value, setValue] = React.useState(props);
@@ -13,58 +10,6 @@ export const useInput = (props) => {
   };
   return { value, onChange };
 };
-
-// const BaseContainer = styled.div`
-//   background: hsl(0deg 0% 100%);
-//   display: flex;
-//   height: 44px;
-//   margin: 10px auto;
-//   width: 28rem;
-//   border: 1px solid hsl(220deg 10% 89%);
-//   box-shadow: none;
-//   border-radius: 24px;
-//   z-index: 3;
-//   &:hover {
-//     background-color: hsl(0deg 0% 100%);
-//     box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-//     border-color: hsl(220deg 10% 89% / 0%);
-//   }
-// `;
-
-// const InnerContainer = styled.div`
-//   font-family: Roboto, arial, sans-serif;
-//   color: #222;
-//   font-size: 14px;
-//   flex: 1;
-//   display: flex;
-//   flex-direction: row;
-//   padding: 5px 8px 0 14px;
-// `;
-
-// const StyledInput = styled.input`
-//   font-size: 16px;
-//   padding: 0.5em;
-//   margin: 0.5em;
-//   width: 100%;
-//   background: none;
-//   border: none;
-//   border-radius: 0px;
-//   &:focus-visible {
-//     outline: none;
-//   }
-// `;
-
-// // the component
-// const GoogleInput = props => {
-//   return (
-//     <BaseContainer>
-//       <InnerContainer>
-//         <SearchSVG />
-//         <StyledInput type="text" {...props} />
-//       </InnerContainer>
-//     </BaseContainer>
-//   );
-// };
 
 const BraveBaseContainer = styled.div`
   display: flex;
@@ -229,28 +174,8 @@ const BraveInput = (props) => (
       <StyledBraveInput type="text" {...props} />
     </BraveInnerContainer>
   </BraveBaseContainer>
-  // <BraveBaseContainer>
-  //   <BraveInnerContainer>
-  //     <BraveSVGSpan>
-  //       <BraveLeftSearchIcon />
-  //     </BraveSVGSpan>
-  //     <StyledBraveInput type="text" {...props} />
-  //     <BraveButton disabled>
-  //       <BraveRightSearchIcon />
-  //     </BraveButton>
-  //   </BraveInnerContainer>
-  // </BraveBaseContainer>
 );
 
-export const Input = (props) => (
+export const SearchBar = (props) => (
   <BraveInput value={props.value} onKeyPress={props.onKeyPress} {...props} />
 );
-// {
-//   return props.engine === 'Google' ? (
-//     <GoogleInput {...props} />
-//   ) : props.engine === 'Brave' ? (
-//     <BraveInput value={props.value} onKeyPress={props.onKeyPress} {...props} />
-//   ) : (
-//     <input type="text" {...props} />
-//   );
-// };
