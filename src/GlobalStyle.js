@@ -1,12 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
-  * { 
+  * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
   }
-  
+
   html {
     min-height: 100vh;
     min-width: 100%;
@@ -24,7 +24,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
     font-family: sans-serif;
     text-align: center;
-    max-width: 85rem;
+    //max-width: 85rem;
     display: grid;
     justify-items: center;
     //grid-gap: 100px;
