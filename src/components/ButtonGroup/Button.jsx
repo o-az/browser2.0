@@ -1,7 +1,5 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { IconURLs } from '@/assets/icons';
-import { tabContext } from '@/contexts/TabContext';
 
 const ButtonGroup = styled.div`
   display: flex;
@@ -21,12 +19,10 @@ const ButtonStyle = styled.button`
   display: flex;
   flex-direction: row;
   align-content: space-between;
-  //justify-content: center;
   align-items: center;
   width: initial;
   height: 45px;
   cursor: pointer;
-  border: 0.1em solid #ffffff;
   margin: 0 0.5em 0.5em 0;
   padding: 0 8px 0 8px;
   border-radius: 0.12em;
@@ -36,10 +32,9 @@ const ButtonStyle = styled.button`
   font-size: 0.9rem;
   color: #000;
   transition: all 0.2s;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   &:hover {
-    background-color: #f7f7f7;
-    border: 0.5px solid #000;
+    background-color: #fff;
   }
   ${({ active }) =>
     active &&
@@ -62,10 +57,10 @@ const Icon = styled.img`
 `;
 
 export const Button = (props) => {
-  const { title, onTabClick, icon, active } = props;
+  const { title, onButtonClick, icon, active, } = props;
 
   return (
-    <ButtonStyle active={active} onClick={() => onTabClick(title)}>
+    <ButtonStyle active={active} onClick={onButtonClick}>
       <Icon src={icon} />
       <Text>{title}</Text>
     </ButtonStyle>

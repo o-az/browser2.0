@@ -33,14 +33,14 @@ const Icon = styled.div``;
 
 export const TabGroup = (props) => {
   const { tabs } = props;
-  const [active, setActive] = useState(tabs[0].engine);
+  const [active, setActive] = useState(tabs[0].searchEngine);
   const { contextValue, setContextValue } = React.useContext(tabContext);
 
   const onTabClick = (type) => {
-    setActive(type.engine);
+    setActive(type.searchEngine);
     setContextValue({
       ...contextValue,
-      engine: type.engine,
+      searchEngine: type.searchEngine,
       logo: type.logo,
       query: type.query,
     });
@@ -50,11 +50,11 @@ export const TabGroup = (props) => {
       <Icon />
       {tabs.map((type) => (
         <Tab
-          key={type.engine}
-          active={active === type.engine}
+          key={type.searchEngine}
+          active={active === type.searchEngine}
           onClick={() => onTabClick(type)}
         >
-          {type.engine}
+          {type.searchEngine}
         </Tab>
       ))}
     </ButtonGroup>

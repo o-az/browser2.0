@@ -15,13 +15,13 @@ const RadioButton = styled.input`
 const RadioLabel = styled.label``;
 
 export const Radio = (props) => {
-  const { id, text, onRadioSelect } = props;
+  const { id, text, onRadioSelect, groupName } = props;
 
   return (
     <RadioContainer>
       <RadioButton
         type="radio"
-        name="radio"
+        name={groupName}
         id={id}
         value={text}
         onChange={onRadioSelect}

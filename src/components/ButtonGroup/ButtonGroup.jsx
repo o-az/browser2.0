@@ -23,9 +23,9 @@ export const ButtonGroup = (props) => {
   const [active, setActive] = React.useState(extensions[0].title);
   const { contextValue, setContextValue } = React.useContext(tabContext);
 
-  const onTabClick = (type) => {
-    setActive(type);
-    setContextValue({ ...contextValue, extension: type });
+  const onButtonClick = (type) => {
+    setActive(type.title);
+    setContextValue({ ...contextValue, extension: type.link });
   };
   return (
     <Container>
@@ -34,7 +34,7 @@ export const ButtonGroup = (props) => {
           key={type.title}
           title={type.title}
           icon={IconURLs[type.title.toLowerCase()].color}
-          onTabClick={onTabClick}
+          onButtonClick={() => onButtonClick(type)}
           active={active === type.title}
         />
       ))}

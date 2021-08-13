@@ -19,7 +19,7 @@ const OptionsStyle = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 6%;
+  gap: 4%;
   row-gap: 15px;
   justify-content: flex-start;
   margin: 0 0 0 2px;
@@ -48,7 +48,7 @@ const TitleDivider = styled.hr`
 `;
 
 export const Menu = (props) => {
-  const { title, items, onOptionSelect } = props;
+  const { title, items, onOptionSelect, } = props;
 
   return (
     <Container>
@@ -63,6 +63,7 @@ export const Menu = (props) => {
             key={item.id}
             text={item.text}
             onRadioSelect={onOptionSelect}
+            groupName={title}
           />
         ))}
       </OptionsStyle>

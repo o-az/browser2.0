@@ -1,45 +1,37 @@
-import * as React from 'react';
-import styled from 'styled-components';
-import { tabContext } from '@/contexts';
-import { GlobalStyle } from '@/GlobalStyle';
 import { BraveLogo, DuckLogo, GoogleLogo } from '@/assets/logos';
 import {
   ButtonGroup,
+  Footer,
+  Menu,
   SearchBar,
   SearchButton,
   TabGroup,
-  Menu,
-  Footer,
 } from '@/components';
+import { tabContext } from '@/contexts';
+import { GlobalStyle } from '@/GlobalStyle';
+import * as React from 'react';
+import styled from 'styled-components';
+import { useInput } from './hooks/useInput';
 
 const LogoContainer = styled.div`
   margin: 100px 0 0 0;
 `;
 
-export const useInput = () => {
-  const [value, setValue] = React.useState('');
-  const onChange = (event) => {
-    setValue(event.target.value);
-    event.preventDefault();
-  };
-  return { value, onChange };
-};
-
 export const GoogleContainer = styled.div``;
 
-export const engines = [
+export const searchEngines = [
   {
-    engine: 'Google',
+    searchEngine: 'Google',
     query: 'search?q=',
     logo: <GoogleLogo />,
   },
   {
-    engine: 'Brave',
+    searchEngine: 'Brave',
     query: 'search?q=',
     logo: <BraveLogo />,
   },
   {
-    engine: 'DuckDuckGo',
+    searchEngine: 'DuckDuckGo',
     query: '?q=',
     logo: <DuckLogo />,
   },
@@ -104,26 +96,31 @@ export const file_format = [
   },
 ];
 
-export const time_duration = [
+export const publishDates = [
   {
     id: 1,
     text: 'Any time',
+    urlFormat: '',
   },
   {
     id: 2,
     text: 'Past year',
+    urlFormat: 'tbs=qdr:y',
   },
   {
     id: 3,
-    text: 'Past 6 months',
+    text: 'Past month',
+    urlFormat: 'tbs=qdr:m',
   },
   {
     id: 4,
-    text: 'Past month',
+    text: 'Past week',
+    urlFormat: 'tbs=qdr:w',
   },
   {
     id: 5,
-    text: 'Past week',
+    text: 'Past day',
+    urlFormat: 'tbs=qdr:d',
   },
 ];
 
@@ -132,24 +129,39 @@ const App = () => {
   const inputProps = useInput();
   const inputValue = inputProps.value;
   const [selectedFileType, setSelectedFileType] = React.useState('');
-  const [selectedDate, setSelectedDate] = React.useState('Any time');
+  const [selectedDate, setSelectedDate] = React.useState({
+    option: 'Any time',
+    urlFormat: '',
+  });
 
-  const _contextValue = contextValue.engine.toLowerCase();
-  const url = `https://${_contextValue}.com/${contextValue.query}${inputValue}+site%3A${contextValue.extension} filetype:${selectedFileType}`;
+  const { searchEngine, query, extension } = contextValue;
+
+  const BASE_URL = `https://${searchEngine}.com`;
+  const SEARCH_QUERY = query + inputValue;
+  const EXTENSION = '+site%3A' + extension;
+  const FILETYPE =
+    selectedFileType === '' ? '' : '+filetype%3A' + selectedFileType;
+
+  const DATE =
+    selectedDate.urlFormat === '' ? '' : '&' + selectedDate.urlFormat;
+
+  const FULL_URL = `${BASE_URL}/${SEARCH_QUERY}${EXTENSION}${FILETYPE}${DATE}`;
 
   const onFileTypeSelect = (event) => {
     setSelectedFileType(event.target.value);
-    console.log(event.target.value);
   };
 
   const onDateSelect = (event) => {
-    setSelectedDate(event.target.value);
-    console.log(event.target.value);
+    setSelectedDate({
+      option: event.target.value,
+      urlFormat: publishDates.find((item) => item.text === event.target.value)
+        .urlFormat,
+    });
   };
 
   const onSearchClick = (event) => {
-    console.log(`onSearchClick URL: ${url}`);
-    window.open(url) || parent.open(url);
+    console.log(`onSearchClick URL: ${FULL_URL}`);
+    window.open(FULL_URL) || parent.open(FULL_URL);
 
     event.preventDefault();
   };
@@ -157,20 +169,21 @@ const App = () => {
   const handleKeyPress = (event) => {
     event.keyCode == 13 || event.which === 13 ? onSearchClick(event) : null;
   };
+
   return (
     <>
       <GlobalStyle />
       <div className="App">
-        <TabGroup tabs={engines} />
+        <TabGroup tabs={searchEngines} />
         <LogoContainer>{contextValue.logo}</LogoContainer>
         <br />
         <p>
-          Your {contextValue.engine} search will be scoped to{' '}
+          Your {contextValue.searchEngine} search will be scoped to{' '}
           {contextValue.extension}
         </p>
         <div>
           <SearchBar
-            engine={contextValue.engine}
+            searchEngine={contextValue.searchEngine}
             onKeyPress={handleKeyPress}
             {...inputProps}
           />
@@ -186,10 +199,12 @@ const App = () => {
         />
         <Menu
           title="Date Published"
-          items={time_duration}
+          items={publishDates}
           onOptionSelect={onDateSelect}
         />
-
+        <br />
+        <br />
+        <span>{FULL_URL}</span>
         <Footer />
       </div>
     </>

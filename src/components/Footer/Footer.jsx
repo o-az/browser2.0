@@ -13,22 +13,35 @@ import styled from 'styled-components';
 const Container = styled.footer`
   width: 100%;
   padding: 20px;
-  font-size: 17px;
   position: fixed;
   bottom: 0;
   left: 0;
   overflow: hidden;
+  display: grid;
+  grid-template-areas: 'empty signature theme';
 `;
 
+const Signature = styled.span`
+  grid-area: signature;
+  width: 100%;
+  font-size: 17px;
+`;
+
+export const Toggler = styled.div`
+  grid-area: theme;
+`
 export const Footer = () => {
   return (
     <Container>
-      <span>
+      <Signature>
         {'Made w/ <3 by '}
         <a target="_blank" href="https://omars.io">
           omars.io
         </a>
-      </span>
+      </Signature>
+      <Toggler>
+       in progress
+      </Toggler>
     </Container>
   );
 };
