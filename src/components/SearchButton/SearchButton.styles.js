@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled from 'styled-components';
 
 const StyledSearchButton = styled.input`
@@ -26,12 +25,4 @@ const StyledSearchButton = styled.input`
   }
 `;
 
-export const SearchButton = (props) => {
-  return (
-    <StyledSearchButton
-      value={props.value}
-      type="submit"
-      onClick={props.click}
-    />
-  );
-};
+export { StyledSearchButton };

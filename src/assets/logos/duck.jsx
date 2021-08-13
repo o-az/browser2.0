@@ -10,8 +10,8 @@ export const DuckLogo = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    width="96%"
-    // width={320}
+    width="85vw"
+    height="140"
     viewBox="0.015 0.019 221.964 69.966"
   >
     <path

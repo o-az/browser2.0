@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GoogleLogo } from '/src/assets/logos';
+import { GoogleLogo } from '@assets';
 export const tabContext = React.createContext({});
 
 export const TabProvider = (props) => {

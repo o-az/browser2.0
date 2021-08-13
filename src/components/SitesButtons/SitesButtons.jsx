@@ -1,24 +1,10 @@
 import * as React from 'react';
-import styled from 'styled-components';
-import { IconURLs } from '@/assets/icons';
-import { Button } from './Button';
-import { tabContext } from '@/contexts/TabContext';
+import { IconURLs } from '@assets';
+import { tabContext } from '@contexts';
+import { SiteButton } from './SiteButton';
+import { Container } from './SitesButtons.styles';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 90vw;
-  max-width: 600px;
-  //max-width: 600px;
-  justify-content: flex-start;
-  margin: 20px 0 0 0;
-  border: 10px;
-  border-radius: 10px;
-  list-style-type: none;
-`;
-
-export const ButtonGroup = (props) => {
+export const SitesButtons = (props) => {
   const { extensions } = props;
   const [active, setActive] = React.useState(extensions[0].title);
   const { contextValue, setContextValue } = React.useContext(tabContext);
@@ -27,10 +13,11 @@ export const ButtonGroup = (props) => {
     setActive(type.title);
     setContextValue({ ...contextValue, extension: type.link });
   };
+
   return (
     <Container>
       {extensions.map((type) => (
-        <Button
+        <SiteButton
           key={type.title}
           title={type.title}
           icon={IconURLs[type.title.toLowerCase()].color}

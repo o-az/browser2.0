@@ -14,8 +14,8 @@ export const BraveLogo = () => (
   //   src="https://brave.com/static-assets/images/brave-logo-dark.svg"
   // />
   <svg
-    width="290"
-    height="132px"
+    width="80vw"
+    height="92"
     viewBox="0 0 430 132"
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"

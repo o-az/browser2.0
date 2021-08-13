@@ -1,23 +1,28 @@
-import { BraveLogo, DuckLogo, GoogleLogo } from '@/assets/logos';
+import * as React from 'react';
+import { BraveLogo, DuckLogo, GoogleLogo } from '@assets';
 import {
-  ButtonGroup,
+  SitesButtons,
   Footer,
   Menu,
-  SearchBar,
+  SearchInput,
   SearchButton,
-  TabGroup,
-} from '@/components';
-import { tabContext } from '@/contexts';
+  SearchEngineTabs,
+} from '@components';
+import { tabContext } from '@contexts';
 import { GlobalStyle } from '@/GlobalStyle';
-import * as React from 'react';
 import styled from 'styled-components';
-import { useInput } from './hooks/useInput';
+import { useInput } from '@hooks';
 
 const LogoContainer = styled.div`
-  margin: 100px 0 0 0;
+  margin: 80px 0 0 0;
 `;
 
-export const GoogleContainer = styled.div``;
+export const MenusContainer = styled.div`
+  margin: 0 0 25px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
 
 export const searchEngines = [
   {
@@ -124,6 +129,11 @@ export const publishDates = [
   },
 ];
 
+export const Description = styled.p`
+  font-size: 1rem;
+  padding: 0 20px 0 20px;
+`;
+
 const App = () => {
   const { contextValue } = React.useContext(tabContext);
   const inputProps = useInput();
@@ -174,15 +184,15 @@ const App = () => {
     <>
       <GlobalStyle />
       <div className="App">
-        <TabGroup tabs={searchEngines} />
+        <SearchEngineTabs tabs={searchEngines} />
         <LogoContainer>{contextValue.logo}</LogoContainer>
         <br />
-        <p>
+        <Description>
           Your {contextValue.searchEngine} search will be scoped to{' '}
           {contextValue.extension}
-        </p>
+        </Description>
         <div>
-          <SearchBar
+          <SearchInput
             searchEngine={contextValue.searchEngine}
             onKeyPress={handleKeyPress}
             {...inputProps}
@@ -191,17 +201,19 @@ const App = () => {
           <SearchButton type="submit" value="Search…" click={onSearchClick} />
           <br />
         </div>
-        <ButtonGroup extensions={extensions} />
-        <Menu
-          title="File Type"
-          items={file_format}
-          onOptionSelect={onFileTypeSelect}
-        />
-        <Menu
-          title="Date Published"
-          items={publishDates}
-          onOptionSelect={onDateSelect}
-        />
+        <SitesButtons extensions={extensions} />
+        <MenusContainer>
+          <Menu
+            title="File Type"
+            items={file_format}
+            onOptionSelect={onFileTypeSelect}
+          />
+          <Menu
+            title="Date Published"
+            items={publishDates}
+            onOptionSelect={onDateSelect}
+          />
+        </MenusContainer>
         <br />
         <br />
         <span>{FULL_URL}</span>

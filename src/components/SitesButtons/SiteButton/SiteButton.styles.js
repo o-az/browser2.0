@@ -1,19 +1,4 @@
-import * as React from 'react';
 import styled from 'styled-components';
-
-const ButtonGroup = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 90vw;
-  max-width: 600px;
-  //max-width: 600px;
-  justify-content: flex-start;
-  margin: 20px 0 0 0;
-  border: 10px;
-  border-radius: 10px;
-  list-style-type: none;
-`;
 
 const ButtonStyle = styled.button`
   display: flex;
@@ -56,13 +41,4 @@ const Icon = styled.img`
   margin: 0 5px 0 0;
 `;
 
-export const Button = (props) => {
-  const { title, onButtonClick, icon, active, } = props;
-
-  return (
-    <ButtonStyle active={active} onClick={onButtonClick}>
-      <Icon src={icon} />
-      <Text>{title}</Text>
-    </ButtonStyle>
-  );
-};
+export { Icon, Text, ButtonStyle };

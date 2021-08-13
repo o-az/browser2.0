@@ -10,7 +10,7 @@ export const GoogleLogo = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 272 92"
-    width="272"
+    width="80vw"
     height="92"
   >
     <path

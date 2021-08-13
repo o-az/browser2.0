@@ -1,17 +1,6 @@
-import * as React from 'react';
 import styled from 'styled-components';
-import { BraveRightSearchIcon } from '@/assets/icons';
 
-// the hook
-export const useInput = (props) => {
-  const [value, setValue] = React.useState(props);
-  const onChange = (event) => {
-    setValue(event.target.value);
-  };
-  return { value, onChange };
-};
-
-const BraveBaseContainer = styled.div`
+const BaseContainer = styled.div`
   display: flex;
   height: 44px;
   margin: 10px auto;
@@ -35,8 +24,7 @@ const BraveBaseContainer = styled.div`
     border-color: hsl(220deg 10% 89% / 0%);
   }
 `;
-
-const BraveInnerContainer = styled.form`
+const InnerContainer = styled.form`
   color: #3b4351;
   font-size: 0.8rem;
   text-rendering: optimizeLegibility;
@@ -65,7 +53,7 @@ const BraveInnerContainer = styled.form`
   }
 `;
 
-const BraveSVGSpan = styled.span`
+const SVGSpan = styled.span`
   box-sizing: inherit;
   font-family: 'Brave Search Icons';
   font-weight: normal;
@@ -88,7 +76,7 @@ const BraveSVGSpan = styled.span`
   opacity: 0.5 !important;
 `;
 
-const StyledBraveInput = styled.input.attrs((props) => ({
+const StyledInput = styled.input.attrs((props) => ({
   placeholder: 'Search the web conveniently …',
 }))`
   box-sizing: inherit;
@@ -120,7 +108,7 @@ const StyledBraveInput = styled.input.attrs((props) => ({
   padding-left: var(--searchbox-pl);
 `;
 
-const BraveButton = styled.button`
+const Button = styled.button`
   margin: 0;
   overflow: visible;
   text-transform: none;
@@ -155,27 +143,6 @@ const BraveButton = styled.button`
   border-bottom-right-radius: 10px;
   padding: 0;
   flex-shrink: 0;
-  // &:hover {
-  //   background: linear-gradient(
-  //     302.53deg,
-  //     hsl(236deg 60% 56%) 0%,
-  //     hsl(310deg 81% 41%) 56.25%,
-  //     hsl(8deg 93% 54%) 100%
-  //   );
-  // }
 `;
 
-const BraveInput = (props) => (
-  <BraveBaseContainer>
-    <BraveInnerContainer>
-      <BraveButton disabled>
-        <BraveRightSearchIcon />
-      </BraveButton>
-      <StyledBraveInput type="text" {...props} />
-    </BraveInnerContainer>
-  </BraveBaseContainer>
-);
-
-export const SearchBar = (props) => (
-  <BraveInput value={props.value} onKeyPress={props.onKeyPress} {...props} />
-);
+export { BaseContainer, InnerContainer, SVGSpan, StyledInput, Button };
