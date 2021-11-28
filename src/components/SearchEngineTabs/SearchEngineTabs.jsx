@@ -1,7 +1,19 @@
-import React, { useState } from 'react';
 import { tabContext } from '@contexts';
-import { ButtonGroup, Icon, Tab } from './SearchEngineTabs.styles';
+import React, { useState } from 'react';
+import { Tab } from './SearchEngineTabs.styles';
 
+/**
+ * const ButtonGroup = styled.ul`
+  display: flex;
+  width: 100%;
+  max-width: 700px;
+  height: 35px;
+  margin: 5px 0 0 0;
+  list-style-type: none;
+  grid-area: 1/1/1/4
+`;
+
+ */
 export const SearchEngineTabs = (props) => {
   const { tabs } = props;
   const [active, setActive] = useState(tabs[0].searchEngine);
@@ -16,18 +28,13 @@ export const SearchEngineTabs = (props) => {
       query: type.query,
     });
   };
-  return (
-    <ButtonGroup>
-      <Icon />
-      {tabs.map((type) => (
-        <Tab
-          key={type.searchEngine}
-          active={active === type.searchEngine}
-          onClick={() => onTabClick(type)}
-        >
-          {type.searchEngine}
-        </Tab>
-      ))}
-    </ButtonGroup>
-  );
+  return tabs.map((type) => (
+    <Tab
+      key={type.searchEngine}
+      active={active === type.searchEngine}
+      onClick={() => onTabClick(type)}
+    >
+      {type.searchEngine}
+    </Tab>
+  ));
 };

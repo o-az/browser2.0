@@ -4,7 +4,7 @@ import { defineConfig } from 'vite';
 /**
  * https://vitejs.dev/config/
  */
-export default defineConfig({
+const defaultConfig = {
   plugins: [reactRefresh()],
   server: {
     open: '/index.html',
@@ -19,4 +19,6 @@ export default defineConfig({
       '@hooks': path.resolve(__dirname, './src/hooks'),
     },
   },
-});
+};
+
+export default defineConfig(defaultConfig);

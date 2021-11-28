@@ -1,14 +1,13 @@
+import 'tailwindcss/tailwind.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { TabProvider } from './contexts/TabContext';
-
+import {GlobalStyle} from './GlobalStyle';
 ReactDOM.render(
   <React.StrictMode>
+    <GlobalStyle />
     <TabProvider>
-      <h1 style={{ color: '#ffffff', backgroundColor: '#ff990a' }}>
-        WORK IN PROGRESS
-      </h1>
       <App />
     </TabProvider>
   </React.StrictMode>,

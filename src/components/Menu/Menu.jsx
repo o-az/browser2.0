@@ -1,7 +1,7 @@
+import { MenuTitle } from '@components/MenuTitle';
 import * as React from 'react';
+import { Radio } from '../Radio';
 import { Container, OptionsStyle } from './Menu.styles';
-import { MenuTitle } from './MenuTitle';
-import { Radio } from './Radio';
 
 export const Menu = (props) => {
   const { title, items, onOptionSelect } = props;

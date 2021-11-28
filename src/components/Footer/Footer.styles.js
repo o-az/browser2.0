@@ -7,8 +7,9 @@ const Container = styled.footer`
   bottom: 0;
   left: 0;
   overflow: hidden;
-  display: grid;
-  grid-template-areas: 'empty signature theme';
+  display: flex;
+  height: 25px;
+  grid-area: 3 / 1 / 4 / 4;
 `;
 
 const Signature = styled.span`

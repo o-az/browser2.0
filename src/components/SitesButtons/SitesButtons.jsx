@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IconURLs } from '@assets';
 import { tabContext } from '@contexts';
-import { SiteButton } from './SiteButton';
+import { SiteButton } from '../SiteButton';
 import { Container } from './SitesButtons.styles';
 
 export const SitesButtons = (props) => {

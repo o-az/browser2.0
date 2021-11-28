@@ -8,12 +8,11 @@ const StyledSearchButton = styled.input`
   font-family: Roboto, arial, sans-serif;
   font-size: 17px;
   font-weight: 500;
-  margin: 11px 4px;
-  padding: 0 16px;
+  margin: 11px 0 0 0;
   line-height: 27px;
   height: 36px;
   min-width: 54px;
-  width: 9em;
+  width: 100%;
   text-align: center;
   cursor: pointer;
   user-select: none;

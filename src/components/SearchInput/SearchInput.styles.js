@@ -13,7 +13,7 @@ const BaseContainer = styled.div`
   color: #3b4351;
   font-size: 0.8rem;
   text-rendering: optimizeLegibility;
-  font-family: var(--main-font);
+
   box-sizing: inherit;
   // max-width: calc(var(--search-form-width) + 2rem);
   border: 1px solid transparent;
@@ -28,11 +28,7 @@ const InnerContainer = styled.form`
   color: #3b4351;
   font-size: 0.8rem;
   text-rendering: optimizeLegibility;
-  font-family: var(--main-font);
-  --vp: calc(100vh - var(--site-footer-height));
-  --searchbox-pl: 0px !important;
-  --search-icon-width: 46px !important;
-  --search-total-gap: 0 !important;
+
   box-sizing: inherit;
   position: relative;
   display: flex;
@@ -44,7 +40,6 @@ const InnerContainer = styled.form`
   width: 100%;
   border: 1px solid transparent;
   border-radius: 10px;
-  background-color: var(--bg-02);
   box-shadow: 0px 2px 8px rgba(37, 44, 54, 0.25);
   &:focus {
     background-color: hsl(0deg 0% 100%);
@@ -69,10 +64,8 @@ const SVGSpan = styled.span`
   height: 100%;
   justify-content: center;
   align-items: center;
-  min-width: var(--search-icon-width);
   order: 1;
   z-index: 3;
-  color: var(--color-gray-2);
   opacity: 0.5 !important;
 `;
 
@@ -99,13 +92,12 @@ const StyledInput = styled.input.attrs((props) => ({
   border: none;
   outline: none;
   box-shadow: none;
-  color: var(--color-primary);
   background-color: transparent;
   border-radius: 0;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
   padding: 8px 18px;
-  padding-left: var(--searchbox-pl);
+  padding-left: 0px;
 `;
 
 const Button = styled.button`
@@ -128,8 +120,6 @@ const Button = styled.button`
   // cursor: none;
   box-sizing: border-box;
   line-height: 20px;
-  --height: 40px;
-  --font-size: 13px;
   height: 100%;
   display: flex;
   justify-content: center;

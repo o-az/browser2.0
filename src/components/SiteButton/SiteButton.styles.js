@@ -8,7 +8,6 @@ const ButtonStyle = styled.button`
   width: initial;
   height: 45px;
   cursor: pointer;
-  margin: 0 0.5em 0.5em 0;
   padding: 0 8px 0 8px;
   border-radius: 0.12em;
   text-decoration: none;

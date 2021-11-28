@@ -2,9 +2,9 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 
   html {
@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  .App {
+  /* .App {
     margin: 0 auto;
     font-family: sans-serif;
     text-align: center;
@@ -28,5 +28,9 @@ export const GlobalStyle = createGlobalStyle`
     display: grid;
     justify-items: center;
     //grid-gap: 100px;
-  }
+    grid-template-columns: 25px 5fr 25px;
+    grid-template-rows: 50px 20fr 80px;
+    grid-gap: 10px;
+    height: 100vh;
+  } */
 `;
